@@ -41,6 +41,7 @@ if not os.path.isfile(OUTPUT_FILE):
 print(f"Done! The diff has been saved to '{OUTPUT_FILE}'.")
 
 # Process the diff file
+accept = 0 
 with open(OUTPUT_FILE, "r") as output_file:
     for line in output_file:
         mcu_match = re.match(r"^\+MCU-([1-9])=([1-9]|1[0-9]|20)\.([0-9]|[1-3][0-9]|40)\.([0-9]|[1-5][0-9]|60)", line)
@@ -49,20 +50,25 @@ with open(OUTPUT_FILE, "r") as output_file:
 
         if mcu_match:
             m_id = mcu_match.group(1)
-            m_version = f"{mcu_match.group(2)}.{mcu_match.group(3)}.{mcu_match.group(4)}"
-            print(f"Processing MCU-{m_id} with version {m_version}")
+            mcu_version = f"{mcu_match.group(2)}.{mcu_match.group(3)}.{mcu_match.group(4)}"
+            maj_v = mcu_match.group(2) 
+            min_v = mcu_match.group(3)
+            print(f"Processing MCU-{m_id} with version {mcu_version}")
 
             with open(ROUTE_TABLE, "r") as route_table_file:
                 for route_line in route_table_file:
                     zonal_match = re.match(rf"^MCU-\[{m_id}]:ZONAL-([1-9])", route_line)
                     if zonal_match:
-                        print(f"From zonal={zonal_match.group(1)}")
+                        zonal_id = zonal_match.group(1)
+                        print(f"From zonal={zonal_id}")
+                       
 
             run_command(f"git checkout origin/main -- MCU-{m_id}")
             
             print("Done! MCU update pulled successfully.")
-            subprocess.run(["sudo","python3", "send-update.py", f"./MCU-{m_id}/update.bin"])
-            run_command("git ")
+            subprocess.run(["python3", "/home/abokhalil/Desktop/Embedded/fota-scripts/send-update.py", zonal_id, maj_v, min_v])
+            if (accept == 1):
+                subprocess.run(["python3", "/home/abokhalil/Desktop/Embedded/fota-scripts/Send_bin.py", f"/home/abokhalil/Desktop/fota-update-repo/MCU-{m_id}/update.bin", zonal_id, maj_v, min_v])
         elif zonal_match:
             z_id = zonal_match.group(1)
             z_version = f"{zonal_match.group(2)}.{zonal_match.group(3)}.{zonal_match.group(4)}"
