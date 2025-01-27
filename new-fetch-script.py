@@ -2,6 +2,10 @@ import os
 import re
 import subprocess
 import sys
+import os
+
+# Get the current working directory
+current_directory = os.getcwd()
 
 # Define constants
 FILE_NAME = "UPDATES_FLAGS_FILE"
@@ -66,9 +70,13 @@ with open(OUTPUT_FILE, "r") as output_file:
             run_command(f"git checkout origin/main -- MCU-{m_id}")
             
             print("Done! MCU update pulled successfully.")
-            subprocess.run(["python3", "/home/abokhalil/Desktop/Embedded/fota-scripts/send-update.py", zonal_id, maj_v, min_v])
-            if (accept == 1):
-                subprocess.run(["python3", "/home/abokhalil/Desktop/Embedded/fota-scripts/Send_bin.py", f"/home/abokhalil/Desktop/fota-update-repo/MCU-{m_id}/update.bin", zonal_id, maj_v, min_v])
+            result=subprocess.run(["python3", "/home/abokhalil/Desktop/Embedded/fota-scripts/send-update.py", zonal_id, maj_v, min_v])
+            if (result.returncode == 0x55):
+                print("The user accepted the update.")
+                subprocess.run(["python3", f"{current_directory}/../Embedded/fota-scripts/Send_bin.py", f"{current_directory}/MCU-{m_id}/update.bin", zonal_id, maj_v, min_v])
+            elif(result.returncode == 0x66):
+                print("The user rejected the update.")
+            
         elif zonal_match:
             z_id = zonal_match.group(1)
             z_version = f"{zonal_match.group(2)}.{zonal_match.group(3)}.{zonal_match.group(4)}"
