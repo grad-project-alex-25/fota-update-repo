@@ -1,0 +1,1 @@
+updated the mcu-2 firmware to be more reliable
