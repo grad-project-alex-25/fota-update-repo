@@ -1,0 +1,45 @@
+diff --git a/MCU-1/description.txt b/MCU-1/description.txt
+index 209e58d..f929f7c 100644
+--- a/MCU-1/description.txt
++++ b/MCU-1/description.txt
+@@ -1,4 +1 @@
+-VERSION=1:0:1
+-
+-
+-
++updated the mcu-1 firmware to be more reliable
+diff --git a/MCU-2/description.txt b/MCU-2/description.txt
+index e69de29..7eb503f 100644
+--- a/MCU-2/description.txt
++++ b/MCU-2/description.txt
+@@ -0,0 +1 @@
++updated the mcu-2 firmware to be more reliable
+diff --git a/MCU-2/update.bin b/MCU-2/update.bin
+index e69de29..6b24b3b 100644
+--- a/MCU-2/update.bin
++++ b/MCU-2/update.bin
+@@ -0,0 +1,2 @@
++this is the application
++as
+diff --git a/UPDATES_FLAGS_FILE b/UPDATES_FLAGS_FILE
+index 8818ece..182ff50 100644
+--- a/UPDATES_FLAGS_FILE
++++ b/UPDATES_FLAGS_FILE
+@@ -2,11 +2,13 @@
+ 
+ #naming convention ECU-ID=Major.Minor.Patch
+ 
+-CENTER-1=1.2.0
+-MCU-1=1.4.5
+-MCU-2=1.0.0
++CENTER-1=1.3.0
++
++MCU-1=6.4.5
++MCU-2=1.5.0
++
+ ZONAL-1=1.0.0
+ ZONAL-2=1.0.0
+-ZONAL-3=1.0.0
+-ZONAL-4=1.0.0
++ZONAL-3=1.1.0
++ZONAL-4=1.6.0
