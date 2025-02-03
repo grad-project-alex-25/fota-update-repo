@@ -1,4 +1,1 @@
-VERSION=1:0:1
-
-
-
+updated the mcu-1 firmware to be more reliable
