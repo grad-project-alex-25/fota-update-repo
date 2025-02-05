@@ -1,1 +1,1 @@
-updated the mcu-2 firmware to be more reliable
+updated the rear zonal-2 firmware to be more reliable
