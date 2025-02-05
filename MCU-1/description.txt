@@ -1,1 +1,1 @@
-updated the mcu-1 firmware to be more reliable
+updated the  AFS  MCU-1 firmware to be more reliable and more robust.
