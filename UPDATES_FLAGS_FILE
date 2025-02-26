@@ -2,11 +2,11 @@
 
 #naming convention ECU-ID=Major.Minor.Patch
 
-CENTER-1=1.0.0
+CENTER-1=1.0.1
 
-MCU-1=1.0.0
-MCU-2=1.0.1
+MCU-1=1.0.1
+MCU-2=1.0.0
 
-ZONAL-1=1.5.1
-ZONAL-2=1.0.1
+ZONAL-1=1.0.0
+ZONAL-2=1.0.0
 
